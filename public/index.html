@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#fff9ef" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#171717" media="(prefers-color-scheme: dark)">
+    <meta name="description" content="Contarém: projeto de Multimídia do Ensino Médio Técnico do SENAC São José do Rio Preto que aproxima crianças e idosos pela arte e pela troca de saberes.">
+    <title>Contarém — O que não te contaram</title>
+    <meta property="og:title" content="Contarém — O que não te contaram">
+    <meta property="og:description" content="Contarém: projeto de Multimídia do Ensino Médio Técnico do SENAC São José do Rio Preto que aproxima crianças e idosos pela arte e pela troca de saberes.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:image" content="./images/og-contarem.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Participante pinta durante uma oficina do Contarém">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contarém — O que não te contaram">
+    <meta name="twitter:description" content="Crianças e idosos compartilham saberes por meio da arte no Contarém.">
+    <meta name="twitter:image" content="./images/og-contarem.jpg">
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="./favicon-32.png" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" sizes="180x180">
+    <link rel="preload" as="image" imagesrcset="./images/pintando-480.webp 480w, ./images/pintando-800.webp 800w" imagesizes="min(calc(100vw - 3rem), 27.5rem)" media="(max-width: 768px)">
+    <link rel="preload" as="image" imagesrcset="./images/pintando-480.webp 480w, ./images/pintando-800.webp 800w, ./images/pintando-1200.webp 1200w" imagesizes="(max-width: 1200px) 42vw, 520px" media="(min-width: 769px)">
+    <script>
+        (() => {
+            const root = document.documentElement;
+            let theme;
+            let contrast;
+            let fontScale;
+            try {
+                theme = localStorage.getItem('theme-preference');
+                contrast = localStorage.getItem('contrast-preference');
+                fontScale = Number(localStorage.getItem('font-scale'));
+            } catch {
+                theme = null;
+                contrast = null;
+                fontScale = NaN;
+            }
+            const dark = theme ? theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+            const highContrast = contrast ? contrast === 'high' : matchMedia('(prefers-contrast: more)').matches;
+            root.classList.toggle('dark', dark);
+            root.classList.toggle('high-contrast', highContrast);
+            document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => {
+                meta.content = highContrast ? '#000000' : dark ? '#171717' : '#fff9ef';
+            });
+            root.style.setProperty('--font-scale', Number.isFinite(fontScale) && fontScale >= 0.9 && fontScale <= 1.4 ? String(fontScale) : '1');
+            root.classList.add('js-enabled');
+        })();
+    </script>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="topbar">
+        <div class="container header-inner">
+            <a class="brand" href="#home" aria-label="Contarém — início">Contarém<span aria-hidden="true">.</span></a>
+            <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="header-menu" aria-label="Abrir menu">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="header-menu" id="header-menu">
+                <nav class="nav-menu" aria-label="Navegação principal">
+                    <a href="#sobre">Nossa experiência</a>
+                    <a href="#atividades">Oficinas</a>
+                    <a href="#galeria">Galeria</a>
+                    <a href="#faq">Perguntas</a>
+                    <a href="#contato">Contato</a>
+                </nav>
+                <div class="toolbar" aria-label="Ajustes de visualização">
+                    <button type="button" class="toolbar-btn" id="fontDecrease" aria-label="Diminuir tamanho do texto" title="Diminuir texto">A−</button>
+                    <button type="button" class="toolbar-btn" id="fontIncrease" aria-label="Aumentar tamanho do texto" title="Aumentar texto">A+</button>
+                    <button type="button" class="toolbar-btn" id="contrastBtn" aria-pressed="false">Alto contraste</button>
+                    <button type="button" class="toolbar-btn theme-btn" id="themeBtn" aria-label="Ativar tema escuro" aria-pressed="false">Tema escuro</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="conteudo">
+        <section id="home" class="hero" aria-labelledby="hero-title">
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <p class="eyebrow"><span class="brush-mark" aria-hidden="true"></span> Arte, escuta e encontro</p>
+                    <h1 id="hero-title">Dar cor à expressão, <span>sem apagar nenhuma história.</span></h1>
+                    <p class="hero-text">Somos estudantes do Ensino Médio Técnico em Multimídia do SENAC São José do Rio Preto. No Contarém, crianças e idosos compartilham saberes por meio da arte: o grupo ensina e também aprende, em uma troca que aproxima gerações e abre espaço para expressar sentimentos.</p>
+                    <div class="hero-actions">
+                        <a href="#atividades" class="btn btn-primary">Conheça as oficinas</a>
+                        <a href="#sobre" class="btn btn-secondary">Nossa experiência</a>
+                    </div>
+                </div>
+                <figure class="hero-photo">
+                    <picture>
+                        <source media="(max-width: 768px)" type="image/webp" srcset="./images/pintando-480.webp 480w, ./images/pintando-800.webp 800w" sizes="min(calc(100vw - 3rem), 27.5rem)">
+                        <source type="image/webp" srcset="./images/pintando-480.webp 480w, ./images/pintando-800.webp 800w, ./images/pintando-1200.webp 1200w" sizes="(max-width: 1200px) 42vw, 520px">
+                        <img src="./images/pintando.png" alt="Participante pinta com pincel e tintas durante a oficina do Contarém no Lar e Esperança" width="1200" height="1600" decoding="async" fetchpriority="high">
+                    </picture>
+                    <figcaption>Um encontro de criação do Contarém no Lar e Esperança.</figcaption>
+                </figure>
+            </div>
+            <span class="hero-swatch swatch-one" aria-hidden="true"></span>
+            <span class="hero-swatch swatch-two" aria-hidden="true"></span>
+        </section>
+
+        <section id="sobre" class="section story-section" aria-labelledby="story-title">
+            <div class="container story-layout">
+                <div class="section-heading">
+                    <p class="eyebrow">Cultura, escuta e encontro</p>
+                    <h2 id="story-title">A arte aproxima gerações e abre espaço para novas formas de expressão.</h2>
+                </div>
+                <div class="story-copy">
+                    <p>O Contarém aproxima crianças do Projeto Universos e idosos do Lar e Esperança por meio de uma troca de saberes: compartilhamos o que sabemos e aprendemos com cada encontro.</p>
+                    <p>Quanto mais conversamos com os idosos, mais percebemos a profundidade do que têm a dizer e sentir. A arte abre caminhos para expressar essas vivências e para que crianças e idosos conheçam outros olhares sobre a vida.</p>
+                    <p class="story-emphasis">A arte dá mais cores à expressão e cria espaço para que gerações compartilhem o que sabem e sentem.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="atividades" class="section workshops-section" aria-labelledby="workshops-title">
+            <div class="container">
+                <div class="section-heading section-heading-centered">
+                    <p class="eyebrow">Quatro oficinas, uma troca</p>
+                    <h2 id="workshops-title">Teatro, pintura, cartas e dança para compartilhar saberes e aproximar gerações.</h2>
+                    <p>No Projeto Universos e no Lar e Esperança, cada oficina abre espaço para ensinar, aprender e se expressar.</p>
+                </div>
+                <div class="workshop-grid">
+                    <article id="pintura" class="workshop-card paint-card">
+                        <span class="workshop-number" aria-hidden="true">01</span>
+                        <p class="post-tag">Projeto Universos</p>
+                        <h3>Teatro e dança</h3>
+                        <p>No teatro, conversamos sobre a história dessa arte, e as crianças de 9 e 10 anos apresentaram minipeças.</p>
+                        <p>Na dança, a dinâmica se inverteu: as crianças ensinaram hip hop ao grupo.</p>
+                    </article>
+                    <article class="workshop-card writing-card">
+                        <span class="workshop-number" aria-hidden="true">02</span>
+                        <p class="post-tag">Lar e Esperança</p>
+                        <h3>Pintura e Era uma vez</h3>
+                        <p>Na pintura, conversamos sobre a vida dos idosos, que desenharam o que sentiam.</p>
+                        <p>Em Era uma vez, os idosos escreveram cartas sobre suas vidas, histórias, vivências e ideias.</p>
+                    </article>
+                </div>
+                <aside class="note-card">
+                    <span class="note-icon" aria-hidden="true">✳</span>
+                    <p><strong>A troca acontece nos dois sentidos.</strong> Compartilhamos conhecimentos nas oficinas e aprendemos com as histórias, ideias e expressões de crianças e idosos.</p>
+                </aside>
+            </div>
+        </section>
+
+        <section id="galeria" class="section gallery-section" aria-labelledby="gallery-title">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">Registros e produções</p>
+                    <h2 id="gallery-title">Registros das oficinas e dos encontros entre gerações.</h2>
+                    <p>Imagens e histórias do Contarém no Projeto Universos e no Lar e Esperança.</p>
+                </div>
+                <div class="gallery-grid">
+                    <figure class="gallery-item gallery-photo">
+                        <picture>
+                            <source type="image/webp" srcset="./images/asilolar-480.webp 480w, ./images/asilolar-680.webp 680w" sizes="(max-width: 520px) calc(100vw - 1.5rem), (max-width: 1050px) calc((100vw - 3rem) / 2), calc((min(100vw, 1160px) - 3rem) / 4)">
+                            <img src="./images/asilolar.png" alt="Fachada do Lar e Esperança" width="680" height="510" loading="lazy" decoding="async">
+                        </picture>
+                        <figcaption class="gallery-caption-stacked">
+                            <strong>Lar e Esperança</strong>
+                            <span>Local das oficinas</span>
+                        </figcaption>
+                    </figure>
+                    <figure class="gallery-item gallery-photo">
+                        <picture>
+                            <source type="image/webp" srcset="./images/pintando-480.webp 480w, ./images/pintando-800.webp 800w, ./images/pintando-1200.webp 1200w" sizes="(max-width: 520px) calc(100vw - 1.5rem), (max-width: 1050px) calc((100vw - 3rem) / 2), calc((min(100vw, 1160px) - 3rem) / 4)">
+                            <img src="./images/pintando.png" alt="Participante pinta durante a oficina do Contarém no Lar e Esperança" width="1200" height="1600" loading="lazy" decoding="async">
+                        </picture>
+                        <figcaption class="gallery-caption-stacked">
+                            <strong>Pintura</strong>
+                            <span>Registro da oficina</span>
+                        </figcaption>
+                    </figure>
+                    <figure class="gallery-item gallery-photo gallery-photo--letter">
+                        <picture>
+                            <source type="image/webp" srcset="./images/carta-480.webp 480w, ./images/carta-800.webp 800w, ./images/carta-1200.webp 1200w, ./images/carta-1600.webp 1600w" sizes="(max-width: 520px) calc(100vw - 1.5rem), (max-width: 1050px) calc((100vw - 3rem) / 2), calc((min(100vw, 1160px) - 3rem) / 4)">
+                            <img src="./images/carta.png" alt="Pessoa idosa segura uma carta escrita à mão durante a oficina Era uma vez no Lar e Esperança" width="4655" height="2618" loading="lazy" decoding="async">
+                        </picture>
+                        <figcaption class="gallery-caption-stacked">
+                            <strong>Era uma vez</strong>
+                            <span>Registro da oficina</span>
+                        </figcaption>
+                      </figure>
+                    <figure class="gallery-item gallery-photo gallery-video-item">
+                          <button class="gallery-video-trigger" type="button" data-video-src="./images/oficina-criancas3.mp4" aria-label="Abrir vídeo do Projeto Universos">
+                              <picture>
+                                  <source type="image/webp" srcset="./images/universos-thumbnail.webp">
+                                  <img src="./images/universos-thumbnail.jpg" alt="" width="720" height="405" loading="lazy" decoding="async">
+                              </picture>
+                              <span class="gallery-video-play" aria-hidden="true">
+                                  <svg viewBox="0 0 24 24" focusable="false">
+                                      <path d="M8 5v14l11-7z"></path>
+                                  </svg>
+                              </span>
+                        </button>
+                        <figcaption class="gallery-caption-stacked">
+                            <strong>Projeto Universos</strong>
+                            <span>Registro da oficina</span>
+                        </figcaption>
+                    </figure>
+                </div>
+                <noscript><p><a href="./images/oficina-criancas3.mp4">Assistir ao vídeo do Projeto Universos</a></p></noscript>
+                <dialog class="gallery-video-dialog" aria-labelledby="universos-video-title">
+                      <div class="gallery-video-dialog__header">
+                          <h2 id="universos-video-title">Projeto Universos</h2>
+                          <button class="gallery-video-close" type="button" aria-label="Fechar vídeo">
+                              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                  <path d="m6 6 12 12M18 6 6 18"></path>
+                              </svg>
+                          </button>
+                      </div>
+                      <div class="gallery-video-dialog__content"></div>
+                      <p class="gallery-video-error" role="status" hidden></p>
+                </dialog>
+                <!-- Antes de publicar imagens, obras, textos, nomes ou iniciais, confirme consentimento livre e específico da pessoa autora; ofereça anonimato e respeite eventual recusa. -->
+                <p class="gallery-note">Cada registro revela diferentes formas de compartilhar saberes e expressar vivências por meio da arte.</p>
+            </div>
+        </section>
+
+        <section id="impacto" class="section values-section" aria-labelledby="values-title">
+            <div class="container values-layout">
+                <div>
+                    <p class="eyebrow">Nosso jeito de estar junto</p>
+                    <h2 id="values-title">Escutar também é reconhecer autoria.</h2>
+                </div>
+                <ul class="values-list">
+                    <li><span aria-hidden="true">01</span> Cada pessoa é protagonista da própria história.</li>
+                    <li><span aria-hidden="true">02</span> A participação acontece no tempo e do jeito de cada um.</li>
+                    <li><span aria-hidden="true">03</span> A arte amplia linguagens; não substitui a voz de ninguém.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="curta-metragem" class="section film-section" aria-labelledby="film-title">
+            <div class="container film-card">
+                <div>
+                    <p class="eyebrow">Registro do projeto</p>
+                        <h2 id="film-title">Um curta documental sobre diferentes olhares e laços entre gerações.</h2>
+                </div>
+                <button class="film-video-trigger" type="button" data-video-src="./images/video-curta.mp4" aria-label="Reproduzir curta-metragem">
+                    <picture>
+                        <source type="image/webp" srcset="./images/video-curta-thumbnail.webp">
+                        <img src="./images/video-curta-thumbnail.jpg" alt="" width="960" height="540" loading="lazy" decoding="async">
+                    </picture>
+                    <span class="film-video-play" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" focusable="false">
+                            <path d="M8 5v14l11-7z"></path>
+                        </svg>
+                    </span>
+                </button>
+                <noscript><p><a href="./images/video-curta.mp4">Assistir ao curta-metragem</a></p></noscript>
+            </div>
+            <dialog class="film-video-dialog" aria-label="Reprodutor do curta-metragem">
+                <button class="film-video-close" type="button" aria-label="Fechar vídeo">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="m6 6 12 12M18 6 6 18"></path>
+                    </svg>
+                </button>
+                <div class="film-video-content">
+                    <video class="film-video-player" preload="none" playsinline poster="./images/video-curta-thumbnail.webp" aria-label="Curta-metragem"></video>
+                    <div class="film-player-controls" aria-label="Controles do curta-metragem">
+                        <button class="film-player-button film-player-toggle" type="button" aria-label="Reproduzir">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                <path d="M8 5v14l11-7z"></path>
+                            </svg>
+                        </button>
+                        <span class="film-player-time film-player-current">0:00</span>
+                        <input class="film-player-seek" type="range" min="0" max="1000" value="0" aria-label="Posição do vídeo">
+                        <span class="film-player-time film-player-duration film-player-time-duration">0:00</span>
+                        <button class="film-player-button film-player-mute" type="button" aria-label="Desativar áudio" aria-pressed="false">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                <path d="M11 5 6 9H3v6h3l5 4zM15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"></path>
+                            </svg>
+                        </button>
+                        <input class="film-player-volume" type="range" min="0" max="1" step="0.05" value="1" aria-label="Volume">
+                        <label class="film-player-quality-label">
+                            <span class="visually-hidden">Qualidade do vídeo</span>
+                            <select class="film-player-quality" aria-label="Qualidade do vídeo">
+                                <option value="1080p" selected>1080p</option>
+                                <option value="720p">720p</option>
+                                <option value="480p">480p</option>
+                            </select>
+                        </label>
+                        <button class="film-player-button film-player-fullscreen" type="button" aria-label="Ativar tela cheia">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                <path d="M8 3H5a2 2 0 0 0-2 2v3m13-5h3a2 2 0 0 1 2 2v3M3 16v3a2 2 0 0 0 2 2h3m13-5v3a2 2 0 0 1-2 2h-3"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <p class="film-player-status" role="status" aria-live="polite" hidden></p>
+                </div>
+            </dialog>
+        </section>
+
+        <section id="faq" class="section faq-section" aria-labelledby="faq-title">
+            <div class="container faq-grid">
+                <div class="section-heading">
+                    <p class="eyebrow">Dúvidas frequentes</p>
+                    <h2 id="faq-title">Sobre o Contarém</h2>
+                    <p>O Contarém aproxima crianças do Projeto Universos e idosos do Lar e Esperança por meio da arte e da troca de saberes.</p>
+                </div>
+                <div class="faq-panel">
+                    <details class="faq-item">
+                        <summary>O que é o Contarém?</summary>
+                        <p>O Contarém é um projeto do Ensino Médio Técnico em Multimídia do SENAC São José do Rio Preto. Por meio da arte, crianças e idosos compartilham conhecimentos e aprendem uns com os outros.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Quais oficinas realizamos?</summary>
+                        <p>Realizamos teatro e dança com crianças do Projeto Universos, além de pintura e escrita de cartas com idosos do Lar e Esperança.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Como a arte ajuda na expressão?</summary>
+                        <p>A arte oferece linguagens além da conversa. Cores, gestos, imagens e palavras podem ajudar a organizar e compartilhar ideias, sempre a partir da vontade de cada participante.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Como a arte aproxima as gerações?</summary>
+                        <p>Nas oficinas, crianças e idosos compartilham o que sabem e aprendem uns com os outros. A arte também oferece caminhos para expressar ideias, sentimentos e vivências.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato" class="section contact-section" aria-labelledby="contact-title">
+            <div class="container contact-layout">
+                <div>
+                    <p class="eyebrow">Vamos conversar</p>
+                    <h2 id="contact-title">Quer saber mais sobre o projeto?</h2>
+                    <p>Para conversar com o grupo, acesse nosso perfil no Instagram:</p>
+                    <a class="instagram-link" href="https://www.instagram.com/contarem2026/" target="_blank" rel="noopener noreferrer" aria-label="Contarém no Instagram: @contarem2026">
+                        <svg class="instagram-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                            <circle cx="12" cy="12" r="4"></circle>
+                            <circle class="instagram-icon-dot" cx="17.5" cy="6.5" r="0.75"></circle>
+                        </svg>
+                        <span>@contarem2026</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <a class="brand" href="#home">Contarém<span aria-hidden="true">.</span></a>
+            <p>Projeto de Multimídia do Ensino Médio Técnico — SENAC São José do Rio Preto, 2026.</p>
+            <a class="instagram-link" href="https://www.instagram.com/contarem2026/" target="_blank" rel="noopener noreferrer" aria-label="Contarém no Instagram: @contarem2026">
+                <svg class="instagram-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <circle class="instagram-icon-dot" cx="17.5" cy="6.5" r="0.75"></circle>
+                </svg>
+                <span>@contarem2026</span>
+            </a>
+        </div>
+    </footer>
+</body>
+</html>
